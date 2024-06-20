@@ -71,6 +71,11 @@ const Dashboard = () => {
                                     <FaBook /> All Applied Scholarships
                                 </NavLink>
                             </li>
+                            <li>
+                                <NavLink to="/dashboard/addMScholarship">
+                                    <FaBook /> Add Scholarship
+                                </NavLink>
+                            </li>
                         </>
                     )}
 

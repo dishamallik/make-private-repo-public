@@ -15,6 +15,7 @@ import ApplicationMy from "../UserDashboard/ApplicationMy";
 import ModeratorProfile from "../ModeratorDashboard/ModeratorProfile";
 import Add from "../AdminDashboard/Add";
 import AdminRoute from "./AdminRoute";
+import ModAdd from "../ModeratorDashboard/ModAdd";
 
 
 export  const router = createBrowserRouter([
@@ -74,7 +75,12 @@ export  const router = createBrowserRouter([
             {
                 path: 'moderatorProfile',
                 element:<ModeratorProfile></ModeratorProfile>
-            }
+            },
+            {
+                path: 'addMScholarship',
+                element:<ModAdd></ModAdd>
+            },
+            
 
         ]
 
