@@ -1,23 +1,25 @@
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import useAxiosSecure from "../hook/useAxiosSecure";
-import useAxiosPublic from "../hook/useAxiosPublic";
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+import useAxiosSecure from '../hook/useAxiosSecure';
+import useAxiosPublic from '../hook/useAxiosPublic';
+import useAuth from '../hook/useAuth';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const Add = () => {
-    const { register, handleSubmit } = useForm();
-    const axiosPublic = useAxiosPublic(); // Axios instance for public routes (e.g., image upload)
-    const axiosSecure = useAxiosSecure(); // Axios instance for secure routes (e.g., backend API)
+    const { register, handleSubmit, setValue } = useForm();
+    const { user } = useAuth();
+    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
+
+    setValue('postedUserEmail', user.email);
 
     const onSubmit = async (data) => {
         try {
-            // Prepare FormData for image upload
             const formData = new FormData();
-            formData.append('image', data.universityImage[0]); // Assuming data.universityImage is FileList
+            formData.append('image', data.universityImage[0]);
 
-            // Upload university image to imgbb.com
             const res = await axiosPublic.post(image_hosting_api, formData, {
                 headers: {
                     'content-type': 'multipart/form-data'
@@ -25,11 +27,10 @@ const Add = () => {
             });
 
             if (res.data.success) {
-                // Image upload successful, prepare scholarship data
                 const scholarshipData = {
                     scholarshipName: data.scholarshipName,
                     universityName: data.universityName,
-                    universityImage: res.data.data.display_url, // Image URL from imgbb.com
+                    universityImage: res.data.data.display_url,
                     universityCountry: data.universityCountry,
                     universityCity: data.universityCity,
                     universityWorldRank: parseInt(data.universityWorldRank),
@@ -40,24 +41,34 @@ const Add = () => {
                     serviceCharge: parseFloat(data.serviceCharge),
                     applicationDeadline: data.applicationDeadline,
                     scholarshipPostDate: data.scholarshipPostDate,
-                    postedUserEmail: data.postedUserEmail
+                    postedUserEmail: user.email
                 };
 
-                // Send scholarship data to your backend endpoint (/menu)
                 const menuRes = await axiosSecure.post('/menu', scholarshipData);
                 console.log(menuRes.data);
 
-                // Handle success (e.g., show success message)
                 if (menuRes.data.insertedId) {
-                    // Show success message or redirect to another page
                     console.log('Scholarship added successfully!');
+                    setValue('scholarshipName', '');
+                    setValue('universityName', '');
+                    setValue('universityImage', null);
+                    setValue('universityCountry', '');
+                    setValue('universityCity', '');
+                    setValue('universityWorldRank', '');
+                    setValue('subjectCategory', 'Agriculture');
+                    setValue('scholarshipCategory', 'Full fund');
+                    setValue('degree', 'Diploma');
+                    setValue('applicationFees', '');
+                    setValue('serviceCharge', '');
+                    setValue('applicationDeadline', '');
+                    setValue('scholarshipPostDate', '');
+                    alert('Scholarship added successfully!');
                 }
             } else {
                 console.error('Image upload failed');
             }
         } catch (error) {
             console.error('Error adding scholarship:', error);
-            // Handle error (e.g., show error message to user)
         }
     };
 
@@ -71,7 +82,6 @@ const Add = () => {
             <div className="container mx-auto p-8">
                 <h1 className="text-2xl font-bold mb-6">Add Scholarship</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                    {/* Form fields */}
                     <div>
                         <label className="label">Scholarship Name</label>
                         <input type="text" {...register('scholarshipName')} className="input input-bordered w-full" />
@@ -138,7 +148,12 @@ const Add = () => {
                     </div>
                     <div>
                         <label className="label">Posted User Email</label>
-                        <input type="email" {...register('postedUserEmail')} className="input input-bordered w-full" />
+                        <input
+                            type="email"
+                            {...register('postedUserEmail')}
+                            defaultValue={user.email}
+                            className="input input-bordered w-full"
+                        />
                     </div>
                     <div className="flex justify-end space-x-4">
                         <Link to="/" className="btn btn-secondary">Cancel</Link>
