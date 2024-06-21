@@ -20,6 +20,8 @@ import Manage from "../AdminDashboard/Manage";
 
 import UpdateItem from "../AdminDashboard/UpdateItem";
 import AllSch from "../Pages/AllSch";
+import ProfileA from "../AdminDashboard/ProfileA";
+
 
 
 export  const router = createBrowserRouter([
@@ -56,7 +58,7 @@ export  const router = createBrowserRouter([
 
         children: [
             {
-                path: 'profile',
+                path: 'userProfile',
                 element:<Profile></Profile>
 
             },
@@ -67,6 +69,12 @@ export  const router = createBrowserRouter([
             },
            
             // admin routes
+            {
+                path: 'adminProfile',
+                element:<AdminRoute><ProfileA></ProfileA></AdminRoute>
+
+
+            },
             {
                 path: 'manageUsers',
                 element:<AdminRoute><User></User></AdminRoute>
@@ -87,6 +95,7 @@ export  const router = createBrowserRouter([
                 element: <AdminRoute><UpdateItem></UpdateItem></AdminRoute>,
                 
             },
+            
 
             // mod routes
             {

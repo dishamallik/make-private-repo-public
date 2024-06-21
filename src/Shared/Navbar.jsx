@@ -1,25 +1,18 @@
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/logo.jpg';
 import useAuth from '../hook/useAuth';
-import useAdmin from '../hook/useAdmin';
-import useModerator from '../hook/useModerator';
+
 
 const Navbar = () => {
     const { logout, user } = useAuth();
-    const [isAdmin] = useAdmin();
-    const [isModerator] = useModerator();
+    
 
     const navLinks = (
         <>
             <li><NavLink to="/" >Home</NavLink></li>
             <li><NavLink to="/all" >All Scholarships</NavLink></li>
            
-            {isModerator && !isAdmin && (
-                <li><NavLink to="/dashboard/manageReviews">Manage Reviews</NavLink></li>
-            )}
-            {user && !isAdmin && !isModerator && (
-                <li><NavLink to="/dashboard/myApplications">My Applications</NavLink></li>
-            )}
+           
             <li><NavLink to="/dashboard"> my Dashboard</NavLink></li>
         </>
     );
