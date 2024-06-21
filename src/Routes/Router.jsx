@@ -16,6 +16,10 @@ import ModeratorProfile from "../ModeratorDashboard/ModeratorProfile";
 import Add from "../AdminDashboard/Add";
 import AdminRoute from "./AdminRoute";
 import ModAdd from "../ModeratorDashboard/ModAdd";
+import Manage from "../AdminDashboard/Manage";
+
+import UpdateItem from "../AdminDashboard/UpdateItem";
+import AllSch from "../Pages/AllSch";
 
 
 export  const router = createBrowserRouter([
@@ -39,6 +43,9 @@ export  const router = createBrowserRouter([
             path: '/register',
             element: <Register></Register>
 
+        },{
+            path: '/all',
+            element: <AllSch></AllSch>
         }
       ]
 
@@ -69,6 +76,16 @@ export  const router = createBrowserRouter([
                 path: 'addScholarship',
                 element:<AdminRoute><Add></Add></AdminRoute>
 
+            },
+            {
+                path: 'manageScholarship',
+                element:<AdminRoute><Manage></Manage></AdminRoute>
+
+            },
+            {
+                path: 'UpdateItem/:id',
+                element: <AdminRoute><UpdateItem></UpdateItem></AdminRoute>,
+                
             },
 
             // mod routes

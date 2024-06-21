@@ -1,35 +1,26 @@
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/logo.jpg';
 import useAuth from '../hook/useAuth';
+import useAdmin from '../hook/useAdmin';
+import useModerator from '../hook/useModerator';
 
 const Navbar = () => {
     const { logout, user } = useAuth();
-
-    // Function to render dashboard links based on user role
-    const renderDashboardLinks = () => {
-        if (user && user.role === 'admin') {
-            return (
-                <li><NavLink to="/dashboard/manageUsers" activeClassName="text-rose-500">Admin Dashboard</NavLink></li>
-            );
-        } else if (user && user.role === 'moderator') {
-            return (
-                <li><NavLink to="/dashboard/moderatorProfile" activeClassName="text-rose-500">Moderator Dashboard</NavLink></li>
-            );
-        } else if (user) {
-            // Assuming user has a role but it's neither admin nor moderator
-            return (
-                <li><NavLink to="/dashboard" activeClassName="text-rose-500">my Dashboard</NavLink></li>
-            );
-        }
-        // Default return when user is not logged in or doesn't have a role
-        return null;
-    };
+    const [isAdmin] = useAdmin();
+    const [isModerator] = useModerator();
 
     const navLinks = (
         <>
-            <li><NavLink exact to="/" activeClassName="text-rose-500">Home</NavLink></li>
-            <li><NavLink to="/all" activeClassName="text-rose-500">All Scholarship</NavLink></li>
-            {renderDashboardLinks()}
+            <li><NavLink to="/" >Home</NavLink></li>
+            <li><NavLink to="/all" >All Scholarships</NavLink></li>
+           
+            {isModerator && !isAdmin && (
+                <li><NavLink to="/dashboard/manageReviews">Manage Reviews</NavLink></li>
+            )}
+            {user && !isAdmin && !isModerator && (
+                <li><NavLink to="/dashboard/myApplications">My Applications</NavLink></li>
+            )}
+            <li><NavLink to="/dashboard"> my Dashboard</NavLink></li>
         </>
     );
 
@@ -43,16 +34,13 @@ const Navbar = () => {
             <div className="navbar-end flex items-center">
                 {/* Dropdown for smaller screens */}
                 <div className="dropdown lg:hidden relative">
-                    {/* Dropdown toggle button */}
                     <div tabIndex={0} role="button" className="btn btn-ghost">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
                         </svg>
                     </div>
-                    {/* Dropdown menu */}
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 absolute right-1">
                         {navLinks}
-                        {/* User profile and logout */}
                         <li>
                             {user ? (
                                 <div className="flex items-center ">

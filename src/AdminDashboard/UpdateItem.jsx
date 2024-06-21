@@ -1,13 +1,17 @@
-import { useForm } from 'react-hook-form';
+
 import { Link } from 'react-router-dom';
-import useAxiosSecure from '../hook/useAxiosSecure';
-import useAxiosPublic from '../hook/useAxiosPublic';
 import useAuth from '../hook/useAuth';
+import useAxiosPublic from '../hook/useAxiosPublic';
+import useAxiosSecure from '../hook/useAxiosSecure';
+import { useForm } from 'react-hook-form';
+
+
+
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
-const Add = () => {
+const UpdateItem = () => {
     const { register, handleSubmit, setValue } = useForm();
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
@@ -71,9 +75,9 @@ const Add = () => {
             console.error('Error adding scholarship:', error);
         }
     };
-
     return (
         <div>
+       <div>
             <div className="border border-violet-300 p-4 rounded-lg shadow-lg">
                 <h1 className="text-3xl font-bold text-center text-violet-600">
                     Add Scholarship
@@ -162,7 +166,8 @@ const Add = () => {
                 </form>
             </div>
         </div>
+        </div>
     );
 };
 
-export default Add;
+export default UpdateItem;
