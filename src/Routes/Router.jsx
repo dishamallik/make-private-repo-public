@@ -21,6 +21,7 @@ import Manage from "../AdminDashboard/Manage";
 import UpdateItem from "../AdminDashboard/UpdateItem";
 import AllSch from "../Pages/AllSch";
 import ProfileA from "../AdminDashboard/ProfileA";
+import Details from "../Pages/Details";
 
 
 
@@ -48,6 +49,12 @@ export  const router = createBrowserRouter([
         },{
             path: '/all',
             element: <AllSch></AllSch>
+        },
+        {
+            path: '/details/:id',
+            element: <Details></Details>,
+            // loader: (params) => fetch(`http://localhost:5000/menu/${params.id}`)
+
         }
       ]
 
