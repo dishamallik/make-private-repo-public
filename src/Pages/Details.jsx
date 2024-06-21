@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Details = () => {
     const { id } = useParams(); // Extracting _id from URL params
@@ -49,9 +49,9 @@ const Details = () => {
                     <p className="text-gray-700 text-base mb-4">Application Fees: ${scholarship.applicationFees}</p>
                     
                     {/* Apply Scholarship Button */}
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                   <Link to="/apply"> <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Apply Scholarship
-                    </button>
+                    </button></Link>
                 </div>
             </div>
         </div>

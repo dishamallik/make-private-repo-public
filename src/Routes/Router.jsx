@@ -22,6 +22,7 @@ import UpdateItem from "../AdminDashboard/UpdateItem";
 import AllSch from "../Pages/AllSch";
 import ProfileA from "../AdminDashboard/ProfileA";
 import Details from "../Pages/Details";
+import Apply from "../Pages/Apply";
 
 
 
@@ -55,6 +56,9 @@ export  const router = createBrowserRouter([
             element: <Details></Details>,
             // loader: (params) => fetch(`http://localhost:5000/menu/${params.id}`)
 
+        },{
+            path: '/apply',
+            element: <Apply></Apply>
         }
       ]
 
