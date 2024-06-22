@@ -14,7 +14,7 @@ const Checkout = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const axiosSecure = useAxiosSecure();
-    const [menu, , refetchMenu] = useMenu(); // Destructured `refetchMenu`
+    const [menu, , refetchMenu] = useMenu();
     const { user } = useAuth();
     const navigate = useNavigate();
 
@@ -75,8 +75,15 @@ const Checkout = () => {
         if (paymentIntent.status === 'succeeded') {
             setTransactionId(paymentIntent.id);
 
-            // Get the first _id value from menu (assuming menu has at least one item)
-            const menuId = menu.length > 0 ? menu[0]._id : null;
+            // Extract specific _id values and additional information from menu
+            const menuDetails = menu.map(item => ({
+                _id: item._id,
+                universityName: item.universityName,
+                scholarshipName: item.scholarshipName,
+                subjectCategory: item.subjectCategory,
+                universityCountry: item.universityCountry,
+                applicationFees: item.applicationFees
+            }));
 
             const payment = {
                 email: user.email,
@@ -85,7 +92,7 @@ const Checkout = () => {
                 transactionId: paymentIntent.id,
                 date: new Date(),
                 userId: user._id, // Assuming user._id is a single value
-                menuId: menuId, // Single menu _id value
+                menuDetails, // Array of objects with menu details
                 status: 'pending',
             };
 
