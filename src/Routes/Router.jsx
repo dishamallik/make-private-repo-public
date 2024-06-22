@@ -11,7 +11,7 @@ import DashBoard from "../Layout/DashBoard";
 import Profile from "../UserDashboard/Profile";
 import Private from "../Pages/Private";
 import User from "../AdminDashboard/User";
-import ApplicationMy from "../UserDashboard/ApplicationMy";
+
 import ModeratorProfile from "../ModeratorDashboard/ModeratorProfile";
 import Add from "../AdminDashboard/Add";
 import AdminRoute from "./AdminRoute";
@@ -25,6 +25,9 @@ import Details from "../Pages/Details";
 import Apply from "../Pages/Apply";
 import PaymentHistory from "../Pages/PaymentHistory";
 import ManageScholarships from "../ModeratorDashboard/ManageScholarships";
+import AppliedScholarships from "../ModeratorDashboard/AppliedScholarships";
+import ManageApplications from "../AdminDashboard/ManageApplications";
+import MyApp from "../UserDashboard/MyApp";
 
 
 
@@ -80,9 +83,11 @@ export  const router = createBrowserRouter([
                 element:<Profile></Profile>
 
             },
+           
+           
             {
                 path: 'myApplications',
-                element:<ApplicationMy></ApplicationMy>
+                element:<MyApp></MyApp>
 
             },
            
@@ -113,6 +118,11 @@ export  const router = createBrowserRouter([
                 element: <AdminRoute><UpdateItem></UpdateItem></AdminRoute>,
                 
             },
+            {
+                path: 'manageApplications',
+                element: <AdminRoute><ManageApplications></ManageApplications></AdminRoute>,
+                
+            },
             
 
             // mod routes
@@ -129,6 +139,10 @@ export  const router = createBrowserRouter([
             {
                 path: 'manageScholarships',
                 element:<ManageScholarships></ManageScholarships>
+            },
+            {
+                path: 'appliedScholarships',
+                element:<AppliedScholarships></AppliedScholarships>
             },
             
             
