@@ -23,6 +23,7 @@ import AllSch from "../Pages/AllSch";
 import ProfileA from "../AdminDashboard/ProfileA";
 import Details from "../Pages/Details";
 import Apply from "../Pages/Apply";
+import PaymentHistory from "../Pages/PaymentHistory";
 
 
 
@@ -59,6 +60,10 @@ export  const router = createBrowserRouter([
         },{
             path: '/apply',
             element: <Apply></Apply>
+        },
+        {
+            path: '/paymentHistory',
+            element: <PaymentHistory></PaymentHistory>
         }
       ]
 
