@@ -24,6 +24,8 @@ import ProfileA from "../AdminDashboard/ProfileA";
 import Details from "../Pages/Details";
 import Apply from "../Pages/Apply";
 import PaymentHistory from "../Pages/PaymentHistory";
+import ManageScholarships from "../ModeratorDashboard/ManageScholarships";
+
 
 
 
@@ -54,7 +56,7 @@ export  const router = createBrowserRouter([
         },
         {
             path: '/details/:id',
-            element: <Details></Details>,
+            element:<Private> <Details></Details></Private>,
             // loader: (params) => fetch(`https://b9-12-server.vercel.app/menu/${params.id}`)
 
         },{
@@ -122,6 +124,13 @@ export  const router = createBrowserRouter([
                 path: 'addMScholarship',
                 element:<ModAdd></ModAdd>
             },
+            
+            
+            {
+                path: 'manageScholarships',
+                element:<ManageScholarships></ManageScholarships>
+            },
+            
             
 
         ]
