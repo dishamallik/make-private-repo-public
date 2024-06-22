@@ -1,4 +1,4 @@
-import  { useState, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
 const Details = () => {
