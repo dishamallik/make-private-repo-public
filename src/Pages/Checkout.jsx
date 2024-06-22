@@ -14,7 +14,7 @@ const Checkout = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const axiosSecure = useAxiosSecure();
-    const [menu, , refetch] = useMenu(); // Destructured `refetch`
+    const [menu, , refetchMenu] = useMenu(); // Destructured `refetchMenu`
     const { user } = useAuth();
     const navigate = useNavigate();
 
@@ -75,23 +75,27 @@ const Checkout = () => {
         if (paymentIntent.status === 'succeeded') {
             setTransactionId(paymentIntent.id);
 
+            // Get the first _id value from menu (assuming menu has at least one item)
+            const menuId = menu.length > 0 ? menu[0]._id : null;
+
             const payment = {
                 email: user.email,
+                name: user.displayName,
                 price: totalPrice,
                 transactionId: paymentIntent.id,
                 date: new Date(),
-                userId: user._id,
-                menuId: menu.map(item => item._id),
-                status: 'pending'
+                userId: user._id, // Assuming user._id is a single value
+                menuId: menuId, // Single menu _id value
+                status: 'pending',
             };
 
             try {
                 const res = await axiosSecure.post('/payments', payment);
                 console.log('payment saved', res.data);
-                await refetch(); // Refetch the menu data after payment is saved
+                await refetchMenu(); // Refetch the menu data after payment is saved
                 navigate('/paymentHistory');
 
-               if (res.data?.paymentResult?.insertedId) {
+                if (res.data?.paymentResult?.insertedId) {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
@@ -99,7 +103,6 @@ const Checkout = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                   
                 }
             } catch (err) {
                 console.error('Error saving payment:', err);

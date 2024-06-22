@@ -55,7 +55,7 @@ export  const router = createBrowserRouter([
         {
             path: '/details/:id',
             element: <Details></Details>,
-            // loader: (params) => fetch(`http://localhost:5000/menu/${params.id}`)
+            // loader: (params) => fetch(`https://b9-12-server.vercel.app/menu/${params.id}`)
 
         },{
             path: '/apply',

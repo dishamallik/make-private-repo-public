@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import  { useState, useLayoutEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
 const Details = () => {
     const { id } = useParams(); // Extracting _id from URL params
     const [scholarship, setScholarship] = useState(null);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         // Fetch scholarship details based on id
-        fetch(`http://localhost:5000/menu/${id}`)
+        fetch(`https://b9-12-server.vercel.app/menu/${id}`)
             .then(response => response.json())
             .then(data => setScholarship(data))
             .catch(error => console.error('Error fetching scholarship details:', error));
@@ -49,9 +49,11 @@ const Details = () => {
                     <p className="text-gray-700 text-base mb-4">Application Fees: ${scholarship.applicationFees}</p>
                     
                     {/* Apply Scholarship Button */}
-                   <Link to="/apply"> <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Apply Scholarship
-                    </button></Link>
+                    <Link to="/apply">
+                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Apply Scholarship
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>
