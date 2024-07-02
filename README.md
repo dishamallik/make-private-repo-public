@@ -1,4 +1,4 @@
-Live Link: UNIGO
+Live Link: https://b9-12-client.web.app
 
 Project Overview
 Concept: UNIGO is a platform designed to help students find scholarships.
