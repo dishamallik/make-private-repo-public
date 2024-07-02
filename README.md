@@ -1,6 +1,7 @@
 UNIGO
-live link:  https://b9-12-client.web.app
-Welcome to UNIGO, your ultimate destination for finding student scholarships. Our platform is designed to connect students with scholarships that best fit their educational needs and career aspirations.
+-live link:  https://b9-12-client.web.app.
+
+-Welcome to UNIGO, your ultimate destination for finding student scholarships. Our platform is designed to connect students with scholarships that best fit their educational needs and career aspirations.
 
 
 Comprehensive Scholarship Database
