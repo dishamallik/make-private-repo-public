@@ -1,6 +1,6 @@
 UNIGO
-#live link:  https://b9-12-client.web.app.
-#Concept: UNIGO is a platform designed to help students find scholarships#
+live link:  https://b9-12-client.web.app.
+Concept: UNIGO is a platform designed to help students find scholarships
 -Problem Solved: Assists students in finding relevant scholarships and simplifies the application process.
 Features
 -Comprehensive Scholarship Database: Access to a wide array of scholarships based on various academic fields and criteria.
