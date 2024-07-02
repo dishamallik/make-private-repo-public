@@ -1,4 +1,9 @@
+
+Welcome to UNIGO
+
 Live Link: https://b9-12-client.web.app
+Your ultimate destination for finding student scholarships. Our platform is designed to connect students with scholarships that best fit their educational needs and career aspirations.
+
 
 Project Overview
 Concept: UNIGO is a platform designed to help students find scholarships.
@@ -23,23 +28,12 @@ Clone the repository:
 
 
 git clone https://github.com/your-username/UNIGO.git
-Navigate to the directory:
+Navigate to the directory: cd UNIGO
 
 
-cd UNIGO
-Install dependencies:
-
-
-npm install
-Run the project:
-
-
-npm start
 Open in browser:
-http://localhost:3000
+http://localhost:5000
 
-Welcome to UNIGO
-Your ultimate destination for finding student scholarships. Our platform is designed to connect students with scholarships that best fit their educational needs and career aspirations.
 
 Key Features:
 Comprehensive Scholarship Database:
