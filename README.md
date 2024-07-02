@@ -1,5 +1,21 @@
 UNIGO
 -live link:  https://b9-12-client.web.app.
+-Concept: UNIGO is a platform designed to help students find scholarships.
+-Problem Solved: Assists students in finding relevant scholarships and simplifies the application process.
+Features
+-Comprehensive Scholarship Database: Access to a wide array of scholarships based on various academic fields and criteria.
+-Personalized Scholarship Matches: Recommendations based on academic profile, interests, and location.
+-User-Friendly Interface: Easy and transparent design for finding scholarships effortlessly.
+-Technologies Used
+Front-End: React.js
+Back-End: Node.js, Express.js
+Database: MongoDB
+-Steps to Run Locally
+Clone the repository: git clone https://github.com/your-username/UNIGO.git
+Navigate to the directory: cd UNIGO
+Install dependencies: npm install
+Run the project: npm start
+Open in browser: http://localhost:3000
 
 -Welcome to UNIGO, your ultimate destination for finding student scholarships. Our platform is designed to connect students with scholarships that best fit their educational needs and career aspirations.
 
@@ -34,3 +50,5 @@ Rest assured that your personal data is secure with our robust privacy policies 
 Community Support
 
 Join a community of fellow scholarship seekers for support, advice, and shared experiences in our forum.
+
+
